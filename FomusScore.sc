@@ -9,11 +9,11 @@ Fomus {
 		^super.new.init(noteList);
 	}
 
-	init { arg noteList;
+	init { arg noteList=[];
 
 		fNoteList = Array.new;
 
-		if( noteList.class.isArray,
+		if( noteList.class == Array,
 			{
 				noteList.do({ arg i;
 					if(	i.class == Event,
@@ -29,7 +29,35 @@ Fomus {
 			}
 		);
 	}
-	
+
+	put { arg stuffIn, n=1;
+
+		case		
+		{stuffIn.class == Event}
+		{ fNoteList = fNoteList.add(stuffIn)}
+
+		{stuffIn.class == Array}
+		{
+			stuffIn.do({ arg thisEvent;
+				if( thisEvent.class == Event,
+					{ fNoteList = fNoteList.add(thisEvent)},
+					{ "At least one element of the Array is not an Event".warn}
+				);
+			})
+		}
+
+		{stuffIn.class == Routine}
+		{
+			stuffIn.nextN(n,()).do({ arg thisEvent;
+				fNoteList = fNoteList.add(thisEvent)
+			});
+		}
+		
+		{(stuffIn.class == Event || stuffIn.class == Array).not}
+		{ "You must provide an Event, a Stream or an Array of Events".warn};
+		
+	}
+
 	allStrings {
 		
 		var out = "";
@@ -55,8 +83,15 @@ Fomus {
 
 	show {
 		("okular " ++ this.fileName ++ ".pdf").unixCmd;
-}
+	}
 
+	plot {
+		fork {
+			this.write;
+			this.make;
+			this.show;
+		}
+	}
 }
 
 + Event {
@@ -105,23 +140,3 @@ Fomus {
 		^outString
 	}
 }
-
-/*
-
-a = (voice: 1, off: 0, dur:1, pitch:2)
-a.class
-a.asFomusString.postln
-
-a[\pitch].class
-
-a = Fomus.new(
-	[ 	(voice: 1, off: 0, dur:0.2342, pitch:2),
-	(voice: 1, off: 0, dur:1.23498756, pitch:3),
-	(voice: 1, off: 0, dur:3.87634521876, pitch:1)]
-	)
-	
-	a.write
-	a.make
-	a.show
-
-*/
