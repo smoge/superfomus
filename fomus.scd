@@ -7,19 +7,31 @@ a = Fomus.new([
 	(voice: 1, dur:3.87634521876, pitch:1)
 ])
 
-f.eventList
-f.eventList
-f.write
-f.make
-f.show 	// instead of write/make/show
-		// you can do "f.plot"
+f.eventList // see the raw Event Array
+
+f.makeLy // process and show the Lilypond Score
+f.makeMidi
+f.makeXml
 
 /*
  * You can set your favorite PDF viewer
- * and custom file name:
+ * and custom file name as a Fomus header:
+ *
+ * If lily-view-exe-path is not correctly set
+ * the resulting PDF won't show up. Just to make sure
+ * edit the path:
  */
 
-a.pdfViewer = "okular"
+f.header = "
+quartertones = yes \n
+lily-exe-path = /usr/bin/lilypond \n
+lily-view-exe-path = /usr/bin/okular \n";
+
+/*
+ * You can also choose any filename
+ * and path to put your generated files:
+ */
+
 a.fileName = "~/Desktop/fomusTest"
 
 /*
@@ -42,26 +54,17 @@ p = Pbind(
 
 p.play
 
-
-f = Fomus();
-
 /* You must specify how many
  * events should be created by the Stream
  * put(Stream, number-of-elements)
  */
 
+f = Fomus();
 f.put(p.asStream, 40)
-f.eventList
-f.write
-f.make
-f.show
 
-/* If you don't want quatertones
- * you can change the FOMUS header:
- */
-
-f.header = "quatertones = no \n"
-f.plot;
+f.makeLy
+f.makeMidi
+f.makeXml
 
 p = Pbind(
 	\note, Prand((-12,-11.5..24), inf),
@@ -70,6 +73,9 @@ p = Pbind(
 
 p.play;
 
-f = Fomus()
-f.put(p.asStream, 30)
-f.plot
+f = Fomus(p.asStream, 30)
+
+f.makeLy
+f.makeMidi
+f.makeXml
+
