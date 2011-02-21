@@ -1,8 +1,8 @@
 
 Fomus {
 
-	var <fNoteList;
-	var <>fileName = "~/scwork/fomusTest".standardizePath;
+	var <>eventList;
+ 	var <>fileName = "~/Desktop/SuperFomus";
 	var <>pdfViewer = "okular";
 	var <>header = "";
 
@@ -10,39 +10,28 @@ Fomus {
 		^super.new.init(noteList);
 	}
 
-	init { arg noteList=[];
+	init { arg thisStuff=[];
 
-		fNoteList = Array.new;
+		eventList = Array.new;
 
-		if( noteList.class == Array,
-			{
-				noteList.do({ arg i;
-					if(	i.class == Event,
-						{ fNoteList = fNoteList.add(i) },
-						{ "All elements must be Events".warn }
-					);
-				})
-			},{
-				if(	noteList == Event,
-					{ fNoteList = fNoteList.add(noteList) },
-					{ "This must be a Event".warn }
-				);
-			}
-		);
+		(thisStuff.size > 0).if({
+			this.put(thisStuff)
+		});
+		
 	}
 
 	put { arg stuffIn, n=1;
 
 		case		
 		{stuffIn.class == Event}
-		{ fNoteList = fNoteList.add(stuffIn)}
+		{ eventList = eventList.add(stuffIn)}
 
 		{stuffIn.class == Array}
 		{
 			stuffIn.do({ arg thisEvent;
 				if( thisEvent.class == Event,
-					{ fNoteList = fNoteList.add(thisEvent)},
-					{ "At least one element of the Array is not an Event".warn}
+					{ eventList = eventList.add(thisEvent)},
+					{ "At least one element of the Array is not an Event".error}
 				);
 			})
 		}
@@ -50,40 +39,40 @@ Fomus {
 		{stuffIn.class == Routine}
 		{
 			stuffIn.nextN(n,()).do({ arg thisEvent;
-				fNoteList = fNoteList.add(thisEvent)
+				eventList = eventList.add(thisEvent)
 			});
 		}
 		
 		{(stuffIn.class == Event || stuffIn.class == Array).not}
-		{ "You must provide an Event, a Stream or an Array of Events".warn};
+		{ "You must provide an Event, a Stream or an Array of Events".error};
 		
 	}
 
-	allStrings {
+	asString {
 		
 		var out = "";
-		fNoteList.do({ arg i; out = out ++ i.asFomusString ++ "\n" });
+			eventList.do({ arg i; out = out ++ i.asFomusString ++ "\n" });
 		^out;
 	}
 
 
 	write {
 		var file;
-		file = File(this.fileName ++ ".fms","w");
+		file = File(this.fileName.standardizePath ++ ".fms","w");
 		file.write(this.header);
-		file.write(this.allStrings);
+		file.write(this.asStrings);
 		file.close;
 	}
 
 	make {
 		(
-			"fomus " ++ this.fileName ++ ".fms" ++
-			" -o " ++ this.fileName ++ ".ly"
+			"fomus " ++ this.fileName.standardizePath ++ ".fms" ++
+			" -o " ++ this.fileName.standardizePath ++ ".ly"
 		).unixCmd;
 	}
 
 	show {
-		(this.pdfViewer ++ " " ++ this.fileName ++ ".pdf").unixCmd;
+		(this.pdfViewer ++ " " ++ this.fileName.standardizePath ++ ".pdf").unixCmd;
 	}
 
 	plot {

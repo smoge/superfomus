@@ -8,8 +8,28 @@ a = Fomus.new([
 	(voice: 1, off: 0, dur:3.87634521876, pitch:1)
 ])
 
-a.put((voice: 1, off: 0, dur:3.87634521876, pitch:1))
+a.eventList
 
+/*
+ * You can set your favorite PDF viwer
+ * and set the file name:
+ */
+
+a.pdfViewer = "okular"
+a.fileName = "~/Desktop/fomusTest"
+
+/*
+ * You can include Events, Array of Events or Streams:
+ *
+ * The plot method will write the file, call fomus/lilypond and
+ * also the PDF viewer application.
+ *
+ * A MIDI file can be generated from the
+ * lilypond file produced byu FOMUS
+ * 
+ */
+
+a.put((voice: 1, off: 0, dur:3.87634521876, pitch:1))
 a.plot
 
 s.boot
@@ -17,9 +37,8 @@ p = Pbind( \note, Prand((-12..12), inf),
 		   \dur, Prand([0.1, 0.2, 0.3, 0.4, 0.5, 1, 1.5, 2], inf))
 
 p.play;
-p.asStream.nextN(25,())
 
-a = Fomus();
-a.put(p.asStream, 30)
-a.fNoteList
-a.plot
+f = Fomus();
+f.put(p.asStream, 30)
+f.fNoteList
+f.plot
