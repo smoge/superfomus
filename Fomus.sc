@@ -2,7 +2,8 @@
 Fomus {
 
 	var <fNoteList;
-	var <>fileName = "/home/smoge/scwork/fomusTest";
+	var <>fileName = "~/scwork/fomusTest".standardizePath;
+	var <>pdfViewer = "okular";
 	var <>header = "";
 
 	*new { arg noteList;
@@ -82,7 +83,7 @@ Fomus {
 	}
 
 	show {
-		("okular " ++ this.fileName ++ ".pdf").unixCmd;
+		(this.pdfViewer ++ " " ++ this.fileName ++ ".pdf").unixCmd;
 	}
 
 	plot {
