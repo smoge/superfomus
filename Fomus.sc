@@ -4,7 +4,7 @@ Fomus {
 	var <>eventList;
  	var <>fileName = "~/Desktop/SuperFomus";
 	var <>pdfViewer = "okular";
-	var <>header = "";
+	var <>header = "quartertones = yes \n";
 
 	*new { arg noteList;
 		^super.new.init(noteList);
@@ -59,8 +59,8 @@ Fomus {
 	write {
 		var file;
 		file = File(this.fileName.standardizePath ++ ".fms","w");
-		file.write(this.header);
-		file.write(this.asStrings);
+		file.write(this.header.asString ++ "\n");
+		file.write(this.asString);
 		file.close;
 	}
 
