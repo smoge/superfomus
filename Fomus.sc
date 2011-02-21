@@ -6,16 +6,16 @@ Fomus {
 	var <>pdfViewer = "okular";
 	var <>header = "quartertones = yes \n";
 
-	*new { arg noteList;
-		^super.new.init(noteList);
+	*new { arg noteList, n;
+		^super.new.init(noteList, n);
 	}
 
-	init { arg thisStuff=[];
+	init { arg thisStuff=[], n=1;
 
 		eventList = Array.new;
 
-		(thisStuff.size > 0).if({
-			this.put(thisStuff)
+		(thisStuff.size > 0 || thisStuff.class == Routine).if({
+			this.put(thisStuff, n)
 		});
 		
 	}
