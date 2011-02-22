@@ -28,9 +28,11 @@ Usage
 You can include Events, Array of Events and Streams. This means that you can generate you data as Events, like this:
 
 
-		[ 	( 'note': -1.1663100719452, 'dur': 0.25 ),
+		[
+				( 'note': -1.1663100719452, 'dur': 0.25 ),
 				( 'note': -0.25006246566772, 'dur': 0.5 ),
-				( 'note': -4.7850661277771, 'dur': 0.125 )]
+				( 'note': -4.7850661277771, 'dur': 0.125 )
+		]
 
 
 You also create a Patterns andspecify how many events should be created by the Stream
@@ -46,17 +48,19 @@ First of all, create your Fomus object, with or without initial content:
 	
 These are the defaults options, change if needed;
 
-Working path and filename:
+Working path and filename (optional):
 
 		f.fileName = "~/Desktop/SuperFomus" 
 
-Where is lilypond?
-		f.lilyPath = "/usr/bin/lilypond" // 
+Where is lilypond (optional):
 
-Application to show the pdf file:
+		f.lilyPath = "/usr/bin/lilypond"
+
+Application to show the pdf file (optional)
+
 		f.lilyViewPath = "/usr/bin/okular"
 
-Do we want to round to quatertone of halftones (boolean):
+Do we want to round to quatertone of halftones as Boolean (optional, default: true):
 		
 		f.qt = true
 
@@ -70,7 +74,7 @@ Let's create a Pattern:
 							\dur, Prand([0.125, 0.25, 0.5], inf)
 		);
 
-		//p.play
+		p.play
 
 Put the next 40 Events in our Fomus object:
 		
