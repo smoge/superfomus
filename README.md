@@ -3,10 +3,13 @@ SuperFomus
 
 SuperFomus is a project that aims to integrate the features of the language SuperCollider (incluing support for Events, Routines and Streams) with the automatic music notation system FOMUS (FOrmat MUSic).
 
+!(http://supercollider.sourceforge.net/images/icon.supercollider.gif "SuperCollider")
+!(http://lilypond.org/pictures/double-lily-modified3.png "LilyPond")
+
 Website
 -------
 
-    http://www.github.com/smoge/superfomus
+		https://github.com/smoge/superfomus
 
 Dependencies
 ------------
@@ -29,9 +32,9 @@ You can include Events, Array of Events and Streams. This means that you can gen
 
 
 		[
-				( 'note': -1.1663100719452, 'dur': 0.25 ),
-				( 'note': -0.25006246566772, 'dur': 0.5 ),
-				( 'note': -4.7850661277771, 'dur': 0.125 )
+				( 'note': 1, 'dur': 0.25 ),
+				( 'note': -1, 'dur': 0.5 ),
+				( 'note': 0, 'dur': 0.125 )
 		]
 
 
