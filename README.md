@@ -25,7 +25,8 @@ Useful Links
 Usage
 =====
 
-You can include Events, Array of Events and Streams. This means that you can generate you data as Events, like this:
+You can include Events, Array of Events and Streams.
+This means that you can generate your data as Events:
 
 
 		[
@@ -35,18 +36,20 @@ You can include Events, Array of Events and Streams. This means that you can gen
 		]
 
 
-You also create a Patterns andspecify how many events should be created by the Stream
+Or... you can create a Pattern, turn it into a Stream, and specify how many events should be created by this Stream
 
 		put(Stream, number-of-elements)
 
-----------
+
+Examples
+--------
 
 First of all, create your Fomus object, with or without initial content:
 
 		f = Fomus()
 
 	
-These are the defaults options, change if needed;
+These are the default options. Change if needed.
 
 Working path and filename (optional):
 
@@ -60,7 +63,7 @@ Application to show the pdf file (optional)
 
 		f.lilyViewPath = "/usr/bin/okular"
 
-Do we want to round to quatertone of halftones as Boolean (optional, default: true):
+Do we want to round to quatertone of halftones as Boolean (optional):
 		
 		f.qt = true
 
