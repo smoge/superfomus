@@ -1,11 +1,12 @@
 
 Fomus {
-
-	var <>eventList;
+	var <eventList;
  	var <>fileName = "~/Desktop/SuperFomus";
 	var <>pdfViewer = "okular";
-	var <>header = "quartertones = yes \n";
-
+	var <>qt = true;
+	var <>lilyPath = "/usr/bin/lilypond";
+	var <>lilyViewPath = "/usr/bin/okular";
+	
 	*new { arg noteList, n;
 		^super.new.init(noteList, n);
 	}
@@ -55,33 +56,60 @@ Fomus {
 		^out;
 	}
 
+	qtString {
+		this.qt.if(
+			{^"quartertones = yes"},
+			{^"quartertones = no"})
+	}
+	
+	header {
+
+		^(
+				this.qtString ++ "\n" ++
+				"lily-exe-path = " ++ this.lilyPath ++ "\n" ++
+				"lily-view-exe-path = " ++ this.lilyViewPath  ++ "\n"
+		).asString;
+	}
 
 	write {
 		var file;
 		file = File(this.fileName.standardizePath ++ ".fms","w");
-		file.write(this.header.asString ++ "\n");
+		file.write(this.header ++ "\n");
 		file.write(this.asString);
 		file.close;
 	}
 
-	make {
+	makeLy {
+		this.write;		
 		(
 			"fomus " ++ this.fileName.standardizePath ++ ".fms" ++
 			" -o " ++ this.fileName.standardizePath ++ ".ly"
 		).unixCmd;
 	}
 
+	makeMidi {
+		this.write;
+		
+		(
+			"fomus " ++ this.fileName.standardizePath ++ ".fms" ++
+			" -o " ++ this.fileName.standardizePath ++ ".mid"
+		).unixCmd;
+	}
+
+
+	makeXml {
+		this.write;
+		(
+			"fomus " ++ this.fileName.standardizePath ++ ".fms" ++
+			" -o " ++ this.fileName.standardizePath ++ ".mid"
+		).unixCmd;
+	}
+
+
 	show {
 		(this.pdfViewer ++ " " ++ this.fileName.standardizePath ++ ".pdf").unixCmd;
 	}
 
-	plot {
-		fork {
-			this.write;
-			this.make;
-			this.show;
-		}
-	}
 }
 
 + Event {
