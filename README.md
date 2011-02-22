@@ -3,9 +3,6 @@ SuperFomus
 
 SuperFomus is a project that aims to integrate the features of the language SuperCollider (incluing support for Events, Routines and Streams) with the automatic music notation system FOMUS (FOrmat MUSic).
 
-!(http://supercollider.sourceforge.net/images/icon.supercollider.gif "SuperCollider")
-!(http://lilypond.org/pictures/double-lily-modified3.png "LilyPond")
-
 Website
 -------
 
