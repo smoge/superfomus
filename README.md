@@ -25,28 +25,43 @@ Useful Links
 Usage
 =====
 
-You can include Events, Array of Events or Streams:
- 
-You can set your favorite PDF viewer and custom file name as a Fomus header:
+You can include Events, Array of Events and Streams. This means that you can generate you data as Events, like this:
 
-If lily-view-exe-path is not correctly set the resulting PDF won't show up. Just to make sure edit the path.
 
-You also must specify how many events should be created by the Stream put(Stream, number-of-elements).
+		[ 	( 'note': -1.1663100719452, 'dur': 0.25 ),
+				( 'note': -0.25006246566772, 'dur': 0.5 ),
+				( 'note': -4.7850661277771, 'dur': 0.125 )]
+
+
+You also create a Patterns andspecify how many events should be created by the Stream
+
+		put(Stream, number-of-elements)
+
+----------
 
 First of all, create your Fomus object, with or without initial content:
 
 		f = Fomus()
 
 	
-These are the defaults options, change if needed:
+These are the defaults options, change if needed;
 
-		f.fileName = "~/Desktop/SuperFomus" // working path and filename
-		f.lilyPath = "/usr/bin/lilypond" // where is lilypond?
-		f.lilyViewPath = "/usr/bin/okular" // software to show the pdf
-		f.qt = true // quatertones
+Working path and filename:
+
+		f.fileName = "~/Desktop/SuperFomus" 
+
+Where is lilypond?
+		f.lilyPath = "/usr/bin/lilypond" // 
+
+Application to show the pdf file:
+		f.lilyViewPath = "/usr/bin/okular"
+
+Do we want to round to quatertone of halftones (boolean):
+		
+		f.qt = true
 
 
-This is not the only way to fill the Fomus Object, but let's create a Pattern:
+Let's create a Pattern:
 
 		// Pattern adapted from James Harkins' "A Practical Guide to Patterns":
 		s.boot
@@ -57,15 +72,26 @@ This is not the only way to fill the Fomus Object, but let's create a Pattern:
 
 		//p.play
 
-		f.put(p.asStream, 40) // put the next 40 Events in our Fomus object
-		f.write
-		f.makeLy // make and show a Lilypond Score
+Put the next 40 Events in our Fomus object:
+		
+		f.put(p.asStream, 40)
 
-		f.qt = false // if you want to round to halftones
-		f.makeLy
+Make and show a Lilypond Score
 
-		f.makeMidi // make a MIDI file
-		f.makeXml // make a MusicXML file
+		f.ly
+		
+If you want to round to halftones
+
+		f.qt = false
+		f.ly
+		
+Make a MIDI file
+
+		f.midi
+
+Make a MusicXML file
+
+		f.xml
 
 Another example:
 
@@ -77,7 +103,7 @@ Another example:
 		p.play;
 
 		f = Fomus(p.asStream, 30)
-		f.makeLy
-		f.makeMidi
-		f.makeXml
+		f.ly
+		f.midi
+		f.xml
 
