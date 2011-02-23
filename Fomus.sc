@@ -161,7 +161,16 @@ Fomus {
 		});
 
 		this.keys.includes(\note).if({
-			outString = outString ++ " pitch " ++ (this[\note] + 60).asString
+
+			if( this[\note].class == Array,
+				{ // if this is a chord:
+					this[\note].do({arg thisNote;
+					outString = outString ++ " pitch " ++ (thisNote + 60).asString + "; \n"
+					})
+				},{
+					outString = outString ++ " pitch " ++ (this[\pitch] + 60).asString
+				}
+			)
 		});
 
 		this.keys.includes(\pitch).if({
