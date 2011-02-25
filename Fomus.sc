@@ -168,7 +168,7 @@ Fomus {
 					outString = outString ++ " pitch " ++ (thisNote + 60).asString + "; \n"
 					})
 				},{
-					outString = outString ++ " pitch " ++ (this[\pitch] + 60).asString
+					outString = outString ++ " pitch " ++ (this[\note] + 60).asString
 				}
 			)
 		});

@@ -3,24 +3,35 @@ SuperFomus
 
 SuperFomus is a project that aims to integrate the features of the language SuperCollider (incluing support for Events, Routines and Streams) with the automatic music notation system FOMUS (FOrmat MUSic).
 
+See fomus.scd for some examples. 
+
+
 Website
 -------
 
+<<<<<<< HEAD
 		https://github.com/smoge/superfomus
+=======
+This project is hosted here:
+
+git clone git://github.com/smoge/superfomus.git SuperFomus
+
+>>>>>>> parent of 1d6ad6c... better README
 
 Dependencies
 ------------
 
-You need LilyPond and Fomus installed on your system!
+You will need LilyPond and Fomus installed on your system.
 
 
-Useful Links
-------------
+Links
+-----
 
 - [SuperCollider](http://supercollider.sourceforge.net/)
 - [LilyPond](http://lilypond.org/)
 - [Fomus](http://sourceforge.net/projects/fomus/)
 
+<<<<<<< HEAD
 
 Usage
 =====
@@ -113,4 +124,7 @@ Another example:
 		f.ly
 		f.midi
 		f.xml
+=======
+    
+>>>>>>> parent of 1d6ad6c... better README
 
