@@ -30,7 +30,7 @@ Fomus {
 
 		eventList = Array.new;
 
-		(thisStuff.size > 0 || thisStuff.class == Routine).if({
+		(thisStuff.size > 0 or: thisStuff.class == Routine).if({
 			this.put(thisStuff, n)
 		});
 		
@@ -44,33 +44,35 @@ Fomus {
 
 		{stuffIn.class == Array}
 		{
-			stuffIn.do({ arg thisEvent;
+			stuffIn.do { |thisEvent|
 				if( thisEvent.class == Event,
 					{ eventList = eventList.add(thisEvent)},
 					{ "At least one element of the Array is not an Event".error}
 				);
-			})
-		}
-
-		{stuffIn.class == Routine}
-		{
-			stuffIn.nextN(n,()).do({ arg thisEvent;
-				eventList = eventList.add(thisEvent)
-			});
+			}
 		}
 		
-		{(stuffIn.class == Event || stuffIn.class == Array).not}
+		{stuffIn.class == Routine}
+		{
+			stuffIn.nextN(n,()).do { |thisEvent|
+				eventList = eventList.add(thisEvent)
+			};
+		}
+		
+		{(stuffIn.class == Event or: stuffIn.class == Array).not}
 		{ "You must provide an Event, a Stream or an Array of Events".error};
 		
 	}
-
+	
 	asString {
-		
 		var out = "";
-			eventList.do({ arg i; out = out ++ i.asFomusString ++ "\n" });
+		
+		eventList.do { arg i; 
+			out = out ++ i.asFomusString ++ "\n" 
+		};
 		^out;
 	}
-
+	
 	qtString {
 		this.qt.if(
 			{^"quartertones = yes"},
@@ -78,14 +80,13 @@ Fomus {
 	}
 	
 	header {
-
 		^(
-				this.qtString ++ "\n" ++
-				"lily-exe-path = " ++ this.lilyPath ++ "\n" ++
-				"lily-view-exe-path = " ++ this.lilyViewPath  ++ "\n"
+			this.qtString ++ "\n" ++
+			"lily-exe-path = " ++ this.lilyPath ++ "\n" ++
+			"lily-view-exe-path = " ++ this.lilyViewPath  ++ "\n"
 		).asString;
 	}
-
+	
 	write {
 		var file;
 		file = File(this.fileName.standardizePath ++ ".fms","w");
@@ -161,24 +162,24 @@ Fomus {
 		});
 
 		this.keys.includes(\note).if({
-
+			
 			if( this[\note].class == Array,
 				{ // if this is a chord:
 					this[\note].do({arg thisNote;
-					outString = outString ++ " pitch " ++ (thisNote + 60).asString + "; \n"
+						outString = outString ++ " pitch " ++ (thisNote + 60).asString + "; \n"
 					})
 				},{
-					outString = outString ++ " pitch " ++ (this[\note] + 60).asString
+					outString = outString ++ " pitch " ++ (this[\note] + 60).asString;
+					outString = outString ++ ";";
 				}
 			)
 		});
-
-		this.keys.includes(\pitch).if({
-			outString = outString ++ " pitch " ++ (this[\pitch] + 60).asString
-		});
-
-		outString = outString ++ ";";
-
+		
+		// this.keys.includes(\pitch).if({
+		// 	outString = outString ++ " pitch " ++ (this[\pitch] + 60).asString
+		// });
+		
+		
 		^outString
 	}
 }
