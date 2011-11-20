@@ -9,14 +9,15 @@ See fomus.scd for some examples.
 Website
 -------
 
-<<<<<<< HEAD
-		https://github.com/smoge/superfomus
-=======
+    https://github.com/smoge/superfomus
+
+
+------------------------------------------------------------
+
 This project is hosted here:
 
-git clone git://github.com/smoge/superfomus.git SuperFomus
+    git clone git://github.com/smoge/superfomus.git SuperFomus
 
->>>>>>> parent of 1d6ad6c... better README
 
 Dependencies
 ------------
@@ -36,8 +37,8 @@ Links
 Usage
 =====
 
-You can include Events, Array of Events and Streams.
-This means that you can generate your data as Events:
+You can include Events, Array of Events and Streams. This means that
+you can generate your data as Events:
 
 
 		[
@@ -47,7 +48,8 @@ This means that you can generate your data as Events:
 		]
 
 
-Or... you can create a Pattern, turn it into a Stream, and specify how many events should be created by this Stream
+Or... you can create a Pattern, turn it into a Stream, and specify how
+many events should be created by this Stream
 
 		put(Stream, number-of-elements)
 
@@ -124,7 +126,5 @@ Another example:
 		f.ly
 		f.midi
 		f.xml
-=======
-    
->>>>>>> parent of 1d6ad6c... better README
-
+        
+        
