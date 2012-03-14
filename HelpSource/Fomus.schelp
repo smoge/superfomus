@@ -5,10 +5,25 @@ related:: Event Routine Stream
 
 DESCRIPTION::
 
-SuperFomus is a project that aims to integrate the features of the
-language SuperCollider (incluing support for Events, Routines and
-Streams) with the automatic music notation system FOMUS (FOrmat
-MUSic).
+subsection:: Introduction
+
+SuperFomus is a project to integrate the language SuperCollider
+(incluing support for Events, Routines and Streams) and the automatic
+music notation system FOMUS (FOrmat MUSic).
+
+
+subsection:: Website
+
+link::https://github.com/smoge/superfomus::
+
+subsection:: Dependencies
+
+You need to have installed on your system FOMUS and LilyPond:
+
+list::
+## LilyPond link::http://lilypond.org/::
+## Fomus link::http://sourceforge.net/projects/fomus/::
+::
 
 CLASSMETHODS::
 
@@ -16,102 +31,63 @@ METHOD:: new
 (describe method here)
 
 argument:: noteList
-(describe argument here)
+Maybe be a Event, and Array of Events or a Pattern.
 
 argument:: n
-(describe argument here)
-
-returns:: (returnvalue)
+In case you are including a Stream, you will need to indicate how many
+Event will be imported.
 
 
 INSTANCEMETHODS::
 
 METHOD:: eventList
-(describe method here)
-
-returns:: (returnvalue)
+List of all Events.
 
 METHOD:: fileName
-File name of the generated files. Default is code::"~/Desktop/SuperFomus"::
-
-returns:: nothing
+Filename of the generated files. Default is code::"~/Desktop/SuperFomus"::
 
 METHOD:: lilyPath
 Path to LilyPond binary. Default code::"/usr/bin/lilypond"::
 
-returns:: (returnvalue)
-
 METHOD:: lilyViewPath
 Path to PDF viewer. Default code::"/usr/bin/xpdf"::
-
-returns:: (returnvalue)
 
 METHOD:: qt 
 Boolean to indicate whether or not you want to use quarter-tone.
 
-returns:: (returnvalue)
-
-METHOD:: init
-(describe method here)
-
-argument:: thisStuff
-(describe argument here)
-
-argument:: n
-(describe argument here)
-
-returns:: (returnvalue)
-
 METHOD:: put
-Can be a list of Event or a Pattern.
+Can be an Event, an Array of Event or a Pattern.
 
-argument:: stuffIn
+argument:: stuffIn 
 
 argument:: n
-(describe argument here)
-
-returns:: (returnvalue)
+In case you are importing a Pattern you should indicate how many
+Events will be imported.
 
 METHOD:: asString
 All Events in FOMUS representation.
 
 returns:: String
 
-METHOD:: qtString
-(describe method here)
-
-returns:: (returnvalue)
-
 METHOD:: header
-(describe method here)
+FOMUS header
 
-returns:: (returnvalue)
+returns:: String
 
 METHOD:: write
-Write to the file.
-
-returns:: (returnvalue)
+Write the FOMUS text file.
 
 METHOD:: ly
 Generate a LilyPond file and show the resulting PDF
 
-returns:: (returnvalue)
-
 METHOD:: midi
 Generate a MIDI file.
-
-returns:: (returnvalue)
 
 METHOD:: xml
 Generate a MusicXML file.
 
-returns:: (returnvalue)
-
 METHOD:: show
 Show the PDF with PDF viewer.
-
-returns:: (returnvalue)
-
 
 EXAMPLES::
 
