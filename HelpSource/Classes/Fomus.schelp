@@ -1,16 +1,14 @@
 CLASS:: Fomus
 summary:: SuperCollider bindings to Fomus Music Notation 
-categories:: Music Notation
-related:: Event Routine Stream
+categories:: MusicNotation
+related:: Event Stream
 
 DESCRIPTION::
 
 subsection:: Introduction
 
-SuperFomus is a project to integrate the language SuperCollider
-(incluing support for Events, Routines and Streams) and the automatic
-music notation system FOMUS (FOrmat MUSic).
-
+SuperFomus tries to integrate the SuperCollider language and the
+automatic music notation system FOMUS (FOrmat MUSic).
 
 subsection:: Website
 
@@ -18,7 +16,7 @@ link::https://github.com/smoge/superfomus::
 
 subsection:: Dependencies
 
-You need to have installed on your system FOMUS and LilyPond:
+You will need FOMUS and LilyPond:
 
 list::
 ## LilyPond link::http://lilypond.org/::
@@ -28,14 +26,15 @@ list::
 CLASSMETHODS::
 
 METHOD:: new
-(describe method here)
+Create a new instance with or without content. code::noteList:: can be
+a Event, an Array of Events or a Stream.
 
 argument:: noteList
-Maybe be a Event, and Array of Events or a Pattern.
+an Event, an Array of Events or a Stream.
 
 argument:: n
-In case you are including a Stream, you will need to indicate how many
-Event will be imported.
+Just needed for Streams. In case you are including a Stream, you will
+need to indicate how many Event will be imported.
 
 
 INSTANCEMETHODS::
@@ -44,7 +43,8 @@ METHOD:: eventList
 List of all Events.
 
 METHOD:: fileName
-Filename of the generated files. Default is code::"~/Desktop/SuperFomus"::
+Base filename, suffix will be added. Default is
+code::"~/Desktop/SuperFomus"::
 
 METHOD:: lilyPath
 Path to LilyPond binary. Default code::"/usr/bin/lilypond"::
@@ -56,13 +56,14 @@ METHOD:: qt
 Boolean to indicate whether or not you want to use quarter-tone.
 
 METHOD:: put
-Can be an Event, an Array of Event or a Pattern.
+Can be an Event, an Array of Events or a Stream.
 
 argument:: stuffIn 
+an Event, an Array of Events or a Stream.
 
 argument:: n
-In case you are importing a Pattern you should indicate how many
-Events will be imported.
+Just needed for Streams. In case you are including a Stream, you will
+need to indicate how many Event will be imported.
 
 METHOD:: asString
 All Events in FOMUS representation.
@@ -186,7 +187,7 @@ code::
 f.xml
 ::
 
-Another example:
+subsection:: Another example
 
 code::
 p = Pbind(
