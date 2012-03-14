@@ -17,10 +17,9 @@
 Fomus {
 	var <eventList;
  	var <>fileName = "~/Desktop/SuperFomus";
-	var <>pdfViewer = "xpdf";
-	var <>qt = true;
 	var <>lilyPath = "/usr/bin/lilypond";
 	var <>lilyViewPath = "/usr/bin/xpdf";
+	var <>qt = true;
 	
 	*new { arg noteList, n;
 		^super.new.init(noteList, n);
@@ -115,15 +114,14 @@ Fomus {
 	
 	xml {
 		this.write;
-		(
-			"fomus " ++ this.fileName.standardizePath ++ ".fms" ++
+		( "fomus " ++ this.fileName.standardizePath ++ ".fms" ++
 			" -o " ++ this.fileName.standardizePath ++ ".mid"
 		).systemCmd;
 	}
 
 
 	show {
-		(this.pdfViewer ++ " " ++ this.fileName.standardizePath ++ ".pdf").unixCmd;
+		(this.lilyViewPath ++ " " ++ this.fileName.standardizePath ++ ".pdf").unixCmd;
 	}
 
 }
