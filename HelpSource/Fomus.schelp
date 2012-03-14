@@ -1,7 +1,7 @@
 CLASS:: Fomus
 summary:: SuperCollider bindings to Fomus Music Notation 
 categories:: Music Notation
-related:: LilyCollider
+related:: Event Routine Stream
 
 DESCRIPTION::
 
@@ -46,8 +46,8 @@ Path to PDF viewer. Default code::"/usr/bin/xpdf"::
 
 returns:: (returnvalue)
 
-METHOD:: qt
-(describe method here)
+METHOD:: qt 
+Boolean to indicate whether or not you want to use quarter-tone.
 
 returns:: (returnvalue)
 
@@ -63,10 +63,9 @@ argument:: n
 returns:: (returnvalue)
 
 METHOD:: put
-(describe method here)
+Can be a list of Event or a Pattern.
 
 argument:: stuffIn
-(describe argument here)
 
 argument:: n
 (describe argument here)
@@ -74,9 +73,9 @@ argument:: n
 returns:: (returnvalue)
 
 METHOD:: asString
-(describe method here)
+All Events in FOMUS representation.
 
-returns:: (returnvalue)
+returns:: String
 
 METHOD:: qtString
 (describe method here)
@@ -89,33 +88,141 @@ METHOD:: header
 returns:: (returnvalue)
 
 METHOD:: write
-(describe method here)
+Write to the file.
 
 returns:: (returnvalue)
 
 METHOD:: ly
-(describe method here)
+Generate a LilyPond file and show the resulting PDF
 
 returns:: (returnvalue)
 
 METHOD:: midi
-(describe method here)
+Generate a MIDI file.
 
 returns:: (returnvalue)
 
 METHOD:: xml
-(describe method here)
+Generate a MusicXML file.
 
 returns:: (returnvalue)
 
 METHOD:: show
-(describe method here)
+Show the PDF with PDF viewer.
 
 returns:: (returnvalue)
 
 
 EXAMPLES::
 
+You can include Events, Array of Events and Streams. This means that
+you can generate your data as Events:
+
 code::
-(some example code)
+[( 'note': 1, 'dur': 0.25  )
+,( 'note': -1, 'dur': 0.5  )
+,( 'note': 0, 'dur': 0.125 )
+]
 ::
+
+Or... you can create a Pattern, turn it into a Stream, and specify how
+many events should be created by this Stream:
+
+code::
+put(Stream, number-of-elements)
+::
+
+First of all, create your Fomus object, with or without initial
+content:
+
+code::
+f = Fomus()
+::
+
+These are the default options. Change if needed. Working path and
+filename (optional):
+
+code::
+f.fileName = "~/Desktop/SuperFomus" 
+::
+
+Where is LilyPond binary (optional):
+
+code::
+f.lilyPath = "/usr/bin/lilypond"
+::
+
+Application to show the pdf file (optional):
+
+code::
+f.lilyViewPath = "/usr/bin/xpdf"
+::
+
+Do we want to round to quatertone of halftones as code::Boolean::
+(optional):
+
+code::
+f.qt = true
+::
+
+Let's create a Pattern:
+
+code::
+// Pattern adapted from James Harkins' "A Practical Guide to Patterns":
+s.boot
+
+p = Pbind(
+	\note, Pif(Pwhite(0.0, 1.0, inf) < 0.7, Pwhite(-7.0, 0, inf), Pwhite(7.0, 14, inf)),
+	\dur, Prand([0.125, 0.25, 0.5], inf)
+);
+
+p.play
+::
+
+Put the next 40 Events in our Fomus object:
+
+code::
+f.put(p.asStream, 40)
+::
+
+Make and show a Lilypond Score
+
+code::
+f.ly
+::
+
+If you want to round to halftones
+
+code::
+f.qt = false
+f.ly
+::
+
+Make a MIDI file
+
+code::
+f.midi
+::
+
+Make a MusicXML file
+
+code::
+f.xml
+::
+
+Another example:
+
+code::
+p = Pbind(
+	\note, Prand((-12,-11.5..24), inf),
+	\dur, Prand([0.125, 0.25, 0.3], inf)
+);
+
+p.play;
+
+f = Fomus(p.asStream, 30)
+f.ly
+f.midi
+f.xml
+::
+
