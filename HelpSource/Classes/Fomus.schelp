@@ -63,7 +63,7 @@ an Event, an Array of Events or a Stream.
 
 argument:: n
 Just needed for Streams. In case you are including a Stream, you will
-need to indicate how many Event will be imported.
+need to indicate how many Events will be imported.
 
 METHOD:: asString
 All Events in FOMUS representation.
