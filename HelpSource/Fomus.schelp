@@ -1,0 +1,121 @@
+CLASS:: Fomus
+summary:: SuperCollider bindings to Fomus Music Notation 
+categories:: Music Notation
+related:: LilyCollider
+
+DESCRIPTION::
+
+SuperFomus is a project that aims to integrate the features of the
+language SuperCollider (incluing support for Events, Routines and
+Streams) with the automatic music notation system FOMUS (FOrmat
+MUSic).
+
+CLASSMETHODS::
+
+METHOD:: new
+(describe method here)
+
+argument:: noteList
+(describe argument here)
+
+argument:: n
+(describe argument here)
+
+returns:: (returnvalue)
+
+
+INSTANCEMETHODS::
+
+METHOD:: eventList
+(describe method here)
+
+returns:: (returnvalue)
+
+METHOD:: fileName
+File name of the generated files. Default is code::"~/Desktop/SuperFomus"::
+
+returns:: nothing
+
+METHOD:: lilyPath
+Path to LilyPond binary. Default code::"/usr/bin/lilypond"::
+
+returns:: (returnvalue)
+
+METHOD:: lilyViewPath
+Path to PDF viewer. Default code::"/usr/bin/xpdf"::
+
+returns:: (returnvalue)
+
+METHOD:: qt
+(describe method here)
+
+returns:: (returnvalue)
+
+METHOD:: init
+(describe method here)
+
+argument:: thisStuff
+(describe argument here)
+
+argument:: n
+(describe argument here)
+
+returns:: (returnvalue)
+
+METHOD:: put
+(describe method here)
+
+argument:: stuffIn
+(describe argument here)
+
+argument:: n
+(describe argument here)
+
+returns:: (returnvalue)
+
+METHOD:: asString
+(describe method here)
+
+returns:: (returnvalue)
+
+METHOD:: qtString
+(describe method here)
+
+returns:: (returnvalue)
+
+METHOD:: header
+(describe method here)
+
+returns:: (returnvalue)
+
+METHOD:: write
+(describe method here)
+
+returns:: (returnvalue)
+
+METHOD:: ly
+(describe method here)
+
+returns:: (returnvalue)
+
+METHOD:: midi
+(describe method here)
+
+returns:: (returnvalue)
+
+METHOD:: xml
+(describe method here)
+
+returns:: (returnvalue)
+
+METHOD:: show
+(describe method here)
+
+returns:: (returnvalue)
+
+
+EXAMPLES::
+
+code::
+(some example code)
+::
