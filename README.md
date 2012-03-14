@@ -1,13 +1,15 @@
-SuperFomus
-==========
+# SuperFomus
 
-SuperFomus is a project that aims to integrate the features of the language SuperCollider (incluing support for Events, Routines and Streams) with the automatic music notation system FOMUS (FOrmat MUSic).
+
+SuperFomus is a project that aims to integrate the features of the
+language SuperCollider (incluing support for Events, Routines and
+Streams) with the automatic music notation system FOMUS (FOrmat
+MUSic).
 
 See fomus.scd for some examples. 
 
 
-Website
--------
+## Website
 
     https://github.com/smoge/superfomus
 
@@ -19,32 +21,27 @@ This project is hosted here:
     git clone git://github.com/smoge/superfomus.git SuperFomus
 
 
-Dependencies
-------------
+## Dependencies
 
-You will need LilyPond and Fomus installed on your system.
+You will need LilyPond and FoMus installed on your system.
 
 
-Links
------
+## Links
 
 - [SuperCollider](http://supercollider.sourceforge.net/)
 - [LilyPond](http://lilypond.org/)
 - [Fomus](http://sourceforge.net/projects/fomus/)
 
-<<<<<<< HEAD
 
-Usage
-=====
+## Usage
 
 You can include Events, Array of Events and Streams. This means that
 you can generate your data as Events:
 
 
-		[
-				( 'note': 1, 'dur': 0.25 ),
-				( 'note': -1, 'dur': 0.5 ),
-				( 'note': 0, 'dur': 0.125 )
+		[( 'note': 1, 'dur': 0.25  )
+		,( 'note': -1, 'dur': 0.5  )
+		,( 'note': 0, 'dur': 0.125 )
 		]
 
 
@@ -54,10 +51,10 @@ many events should be created by this Stream
 		put(Stream, number-of-elements)
 
 
-Examples
---------
+## Examples
 
-First of all, create your Fomus object, with or without initial content:
+First of all, create your Fomus object, with or without initial
+content:
 
 		f = Fomus()
 
@@ -87,7 +84,7 @@ Let's create a Pattern:
 		s.boot
 		p = Pbind(
 			\note, Pif(Pwhite(0.0, 1.0, inf) < 0.7, Pwhite(-7.0, 0, inf), Pwhite(7.0, 14, inf)),
-							\dur, Prand([0.125, 0.25, 0.5], inf)
+			\dur, Prand([0.125, 0.25, 0.5], inf)
 		);
 
 		p.play

@@ -1,4 +1,4 @@
-// SuperFomus -- SuperCollider bindings to Fomus Music Notation
+// SuperFomus -- SuperCollider bindings to FoMus Music Notation
 // Copyright (C) 2011 Bernardo Barros
 // 
 // This program is free software: you can redistribute it and/or modify
@@ -17,10 +17,10 @@
 Fomus {
 	var <eventList;
  	var <>fileName = "~/Desktop/SuperFomus";
-	var <>pdfViewer = "okular";
+	var <>pdfViewer = "xpdf";
 	var <>qt = true;
 	var <>lilyPath = "/usr/bin/lilypond";
-	var <>lilyViewPath = "/usr/bin/okular";
+	var <>lilyViewPath = "/usr/bin/xpdf";
 	
 	*new { arg noteList, n;
 		^super.new.init(noteList, n);
@@ -94,7 +94,7 @@ Fomus {
 		file.write(this.asString);
 		file.close;
 	}
-
+	
 	ly {
 		this.write;		
 		(
@@ -102,7 +102,7 @@ Fomus {
 			" -o " ++ this.fileName.standardizePath ++ ".ly"
 		).systemCmd;
 	}
-
+	
 	midi {
 		this.write;
 		
@@ -111,8 +111,8 @@ Fomus {
 			" -o " ++ this.fileName.standardizePath ++ ".mid"
 		).systemCmd;
 	}
-
-
+	
+	
 	xml {
 		this.write;
 		(
