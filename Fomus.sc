@@ -115,7 +115,7 @@ Fomus {
 	xml {
 		this.write;
 		( "fomus " ++ this.fileName.standardizePath ++ ".fms" ++
-			" -o " ++ this.fileName.standardizePath ++ ".mid"
+			" -o " ++ this.fileName.standardizePath ++ ".xml"
 		).systemCmd;
 	}
 
