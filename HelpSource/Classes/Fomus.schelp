@@ -148,7 +148,7 @@ code::
 s.boot
 
 p = Pbind(
-	\midinote, Pif(Pwhite(0.0, 1.0, inf) < 0.7, Pwhite(60, 80, inf), Pwhite(45, 55, inf)),
+	\midinote, Pif(Pwhite(0.0, 1.0, inf) < 0.7, Pwhite(60, 80.5, inf), Pwhite(45, 55.5, inf)),
 	\dur, Prand([0.125, 0.25, 0.5], inf)
 );
 
