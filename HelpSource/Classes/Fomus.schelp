@@ -96,9 +96,9 @@ You can include Events, Array of Events and Streams. This means that
 you can generate your data as Events:
 
 code::
-[( 'midinote': 1, 'dur': 0.25  )
-,( 'midinote': -1, 'dur': 0.5  )
-,( 'midinote': 0, 'dur': 0.125 )
+[ ( 'midinote': 60,   'dur': 0.25  )
+, ( 'midinote': 66.5, 'dur': 0.5   )
+, ( 'midinote': 70,   'dur': 0.125 )
 ]
 ::
 
