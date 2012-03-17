@@ -148,7 +148,7 @@ code::
 s.boot
 
 p = Pbind(
-	\midinote, Pif(Pwhite(0.0, 1.0, inf) < 0.7, Pwhite(-7.0, 0, inf), Pwhite(7.0, 14, inf)),
+	\midinote, Pif(Pwhite(0.0, 1.0, inf) < 0.7, Pwhite(60, 80, inf), Pwhite(45, 55, inf)),
 	\dur, Prand([0.125, 0.25, 0.5], inf)
 );
 
@@ -206,19 +206,22 @@ f.ly;
 )
 ::
 
+
 subsection:: Another example
 
 code::
+(
 p = Pbind(
-	\midinote, Prand((-12,-11.5..24), inf),
-	\dur, Prand([0.125, 0.25, 0.3], inf)
+        \midinote, Prand((60,60.5..80), inf),
+	\dur, Prand([0.125, 0.25, 0.5], inf)
 );
 
-p.play;
+//p.play;
 
-f = Fomus(p.asStream, 30)
-f.ly
-f.midi
-f.xml
+f = Fomus(p.asStream, 30);
+f.ly;
+f.midi;
+f.xml;
+)
 ::
 

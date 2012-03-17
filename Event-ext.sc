@@ -18,6 +18,7 @@
 + Event {
 
 	asFomusString {
+		
 		var outString = "";
 
 		this.keys.includes(\instrument).if({
