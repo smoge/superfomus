@@ -1,83 +1,82 @@
-// SuperFomus -- SuperCollider bindings to FoMus Music Notation
-// Copyright (C) 2011 Bernardo Barros
-// 
-// This program is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-// 
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-// 
-// You should have received a copy of the GNU General Public License
-// along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 Fomus {
 	var <eventList;
- 	var <>fileName = "~/Desktop/SCFomus";
-	var <>lilyPath = "/usr/bin/lilypond";
-	var <>lilyViewPath = "/usr/bin/xpdf";
+ 	var <>fileName = "~/Desktop/scf";
+	var <>lilyPath;
+	var <>lilyViewPath;
 	var <>qt = true;
-	
+
 	*new { arg noteList, n;
 		^super.new.init(noteList, n);
 	}
 
-	init { arg thisStuff=[], n=1;
+	init { arg that=[], n=1;
+
+        Platform.case(
+            \osx, {
+                lilyPath = "/Applications/LilyPond.app/Contents/Resources/bin/lilypond ";
+                lilyViewPath = "open "
+            },
+            \linux, {
+                lilyPath = "lilypond ";
+                lilyViewPath = "xpdf "
+            },
+            \windows, {
+                "Please set LilyPond and PDF viewer paths.".warn
+            }
+        );
 
 		eventList = Array.new;
 
-		(thisStuff.size > 0 or: thisStuff.class == Routine).if({
-			this.put(thisStuff, n)
+		(that.size > 0 or: that.class == Routine).if({
+			this.put(that, n)
 		});
-		
+
 	}
 
-	put { arg stuffIn, n=1;
+	put { arg that, n=1;
 
-		case		
-		{stuffIn.class == Event}
-		{ eventList = eventList.add(stuffIn)}
+		case
+		{that.class == Event}
+		{ eventList = eventList.add(that)}
 
-		{stuffIn.class == Array}
+		{that.class == Array}
 		{
-			stuffIn.do { |thisEvent|
+			that.do { |thisEvent|
 				if( thisEvent.class == Event,
 					{ eventList = eventList.add(thisEvent)},
 					{ "At least one element of the Array is not an Event".error}
 				);
 			}
 		}
-		
-		{stuffIn.class == Routine}
+
+		{that.class == Routine}
 		{
-			stuffIn.nextN(n,()).do { |thisEvent|
+			that.nextN(n,()).do { |thisEvent|
 				eventList = eventList.add(thisEvent)
 			};
 		}
-		
-		{(stuffIn.class == Event or: stuffIn.class == Array).not}
+
+		{(that.class == Event or: that.class == Array).not}
 		{ "You must provide an Event, a Stream or an Array of Events".error};
-		
+
 	}
-	
+
 	asString {
 		var out = "";
-		
-		eventList.do { arg i; 
-			out = out ++ i.asFomusString ++ "\n" 
+
+		eventList.do { arg i;
+			out = out ++ i.asFomusString ++ "\n"
 		};
 		^out;
 	}
-	
+
 	qtString {
 		this.qt.if(
 			{^"quartertones = yes"},
 			{^"quartertones = no"})
 	}
-	
+
 	header {
 		^(
 			this.qtString ++ "\n" ++
@@ -88,7 +87,7 @@ Fomus {
 			"voice (1 2 3)"  ++ "\n"
 		).asString;
 	}
-	
+
 	write {
 		var file;
 		file = File(this.fileName.standardizePath ++ ".fms","w");
@@ -96,25 +95,25 @@ Fomus {
 		file.write(this.asString);
 		file.close;
 	}
-	
+
 	ly {
-		this.write;		
+		this.write;
 		(
 			"fomus " ++ this.fileName.standardizePath ++ ".fms" ++
 			" -o " ++ this.fileName.standardizePath ++ ".ly"
-		).systemCmd;
+		).postln.runInTerminal;
 	}
-	
+
 	midi {
 		this.write;
-		
+
 		(
 			"fomus " ++ this.fileName.standardizePath ++ ".fms" ++
 			" -o " ++ this.fileName.standardizePath ++ ".mid"
 		).systemCmd;
 	}
-	
-	
+
+
 	xml {
 		this.write;
 		( "fomus " ++ this.fileName.standardizePath ++ ".fms" ++
