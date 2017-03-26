@@ -1,5 +1,5 @@
 CLASS:: Fomus
-summary:: SuperCollider bindings to Fomus Music Notation 
+summary:: SuperCollider bindings to Fomus Music Notation
 categories:: MusicNotation
 related:: Event Stream
 
@@ -52,13 +52,13 @@ Path to LilyPond binary. Default code::"/usr/bin/lilypond"::
 METHOD:: lilyViewPath
 Path to PDF viewer. Default code::"/usr/bin/xpdf"::
 
-METHOD:: qt 
+METHOD:: qt
 Boolean to indicate whether or not you want to use quarter-tone.
 
 METHOD:: put
 Can be an Event, an Array of Events or a Stream.
 
-argument:: stuffIn 
+argument:: stuffIn
 an Event, an Array of Events or a Stream.
 
 argument:: n
@@ -120,7 +120,7 @@ These are the default options. Change if needed. Working path and
 filename (optional):
 
 code::
-f.fileName = "~/Desktop/SuperFomus" 
+f.fileName = "~/Desktop/SuperFomus"
 ::
 
 Where is LilyPond binary:
@@ -148,8 +148,8 @@ code::
 s.boot
 
 p = Pbind(
-	\midinote, Pif(Pwhite(0.0, 1.0, inf) < 0.7, Pwhite(60, 80.5, inf), Pwhite(45, 55.5, inf)),
-	\dur, Prand([0.125, 0.25, 0.5], inf)
+  \midinote, Pif(Pwhite(0.0, 1.0, inf) < 0.7, Pwhite(60, 80.5, inf), Pwhite(45, 55.5, inf)),
+  \dur, Prand([0.125, 0.25, 0.5], inf)
 );
 
 p.play
@@ -186,26 +186,27 @@ code::
 f.xml
 ::
 
-subsection:: Microtonal Chords 
+subsection:: Microtonal Chords
 
 code::
 (
-a = 12.collect({|i| 
-	(
-		'midinote': (
-			(63 + rrand(-6,6.5) + [0,8,13]) ++ 
-			(60 + rrand(-6,6.5) + [0,5,6,9])
-		),
-		'dur': 1
-	)
-});
+a = 12.collect({|i|
+  (
+    'midinote': (
+      (63 + rrand(-6,6.5) + [0,8,13]) ++
+      (60 + rrand(-6,6.5) + [0,5,6,9])
+    ),
+    'dur': 1
+  )
+})
 
 f = Fomus();
 f.put(a);
 f.ly;
-)
+);
 ::
 
+image::example.png::
 
 subsection:: Another example
 
@@ -213,7 +214,7 @@ code::
 (
 p = Pbind(
         \midinote, Prand((60,60.5..80), inf),
-	\dur, Prand([0.125, 0.25, 0.5], inf)
+  \dur, Prand([0.125, 0.25, 0.5], inf)
 );
 
 //p.play;
@@ -224,4 +225,3 @@ f.midi;
 f.xml;
 )
 ::
-
