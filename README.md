@@ -9,3 +9,6 @@ See Help file for more information.
 ## Website
 
     https://github.com/smoge/superfomus
+
+
+![Examples](Images/examples.png)
