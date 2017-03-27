@@ -43,7 +43,7 @@
 		});
 
 		this.keys.includes(\note).if({
-			
+
 			if( this[\note].class == Array,
 				{ // if this is a chord:
 					this[\note].do({arg thisNote;
@@ -58,3 +58,4 @@
 		^outString
 	}
 }
+
