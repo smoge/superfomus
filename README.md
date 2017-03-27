@@ -34,7 +34,7 @@ f.ly;
 );
 ```
 
-![Example1](HelpSource/Classes/example1.svg)
+![Example1](https://raw.githubusercontent.com/smoge/superfomus/master/HelpSource/Classes/example1.svg)
 
 
 ```supercollider
