@@ -206,7 +206,7 @@ f.ly;
 );
 ::
 
-image::example.png::
+image::example1.svg::
 
 subsection:: Another example
 
@@ -225,3 +225,5 @@ f.midi;
 f.xml;
 )
 ::
+
+image::example2.svg::
