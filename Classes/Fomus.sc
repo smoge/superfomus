@@ -37,7 +37,9 @@ Fomus {
 
 	}
 
-	put { arg that, n=1;
+    put { arg that, n=1; this.add(that, n) }
+
+	add { arg that, n=1;
 
 		case
 		{that.class == Event}
