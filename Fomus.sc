@@ -1,9 +1,10 @@
 
 Fomus {
 	var <eventList;
- 	var <>fileName = "~/Desktop/scf";
+ 	var <>fileName = "~/Desktop/SCFomus_";
 	var <>lilyPath;
 	var <>lilyViewPath;
+	var <>timeTag;
 	var <>qt = true;
 
 	*new { arg noteList, n;
@@ -15,11 +16,13 @@ Fomus {
         Platform.case(
             \osx, {
                 lilyPath = "/Applications/LilyPond.app/Contents/Resources/bin/lilypond ";
-                lilyViewPath = "open "
+                lilyViewPath = "open ";
+								"Please check LilyPond and PDF viewer paths.".warn
             },
             \linux, {
                 lilyPath = "lilypond ";
-                lilyViewPath = "xpdf "
+                lilyViewPath = "xpdf ";
+								"Please check LilyPond and PDF viewer paths.".warn
             },
             \windows, {
                 "Please set LilyPond and PDF viewer paths.".warn
@@ -27,6 +30,7 @@ Fomus {
         );
 
 		eventList = Array.new;
+		this.newTag;
 
 		(that.size > 0 or: that.class == Routine).if({
 			this.put(that, n)
@@ -63,18 +67,17 @@ Fomus {
 	}
 
 	asString {
-		var out = "";
-
+		var out = String.new;
 		eventList.do { arg i;
 			out = out ++ i.asFomusString ++ "\n"
 		};
-		^out;
+		^out
 	}
 
 	qtString {
-		this.qt.if(
-			{^"quartertones = yes"},
-			{^"quartertones = no"})
+		^this.qt.if(
+			{"quartertones = yes"},
+			{"quartertones = no"})
 	}
 
 	header {
@@ -88,42 +91,41 @@ Fomus {
 		).asString;
 	}
 
+	newTag { timeTag = Date.getDate.stamp.asString }
+
 	write {
-		var file;
-		file = File(this.fileName.standardizePath ++ ".fms","w");
+		var file = File(this.fileName.standardizePath ++ timeTag ++ ".fms","w");
 		file.write(this.header ++ "\n");
 		file.write(this.asString);
-		file.close;
+		file.close
 	}
 
 	ly {
+		this.newTag;
 		this.write;
-		(
-			"fomus " ++ this.fileName.standardizePath ++ ".fms" ++
-			" -o " ++ this.fileName.standardizePath ++ ".ly"
-		).postln.runInTerminal;
+		("fomus " ++ this.fileName.standardizePath ++ timeTag ++ ".fms"
+		++ " -o " ++ this.fileName.standardizePath ++ timeTag ++ ".ly"
+		).runInTerminal
 	}
 
 	midi {
+		this.newTag;
 		this.write;
-
-		(
-			"fomus " ++ this.fileName.standardizePath ++ ".fms" ++
-			" -o " ++ this.fileName.standardizePath ++ ".mid"
-		).systemCmd;
+		("fomus " ++ this.fileName.standardizePath ++ timeTag ++ ".fms"
+		++ " -o " ++ this.fileName.standardizePath ++ timeTag ++ ".mid"
+		).systemCmd
 	}
 
 
 	xml {
+		this.newTag;
 		this.write;
 		( "fomus " ++ this.fileName.standardizePath ++ ".fms" ++
 			" -o " ++ this.fileName.standardizePath ++ ".xml"
-		).systemCmd;
+		).systemCmd
 	}
 
 
-	show {
-		(this.lilyViewPath ++ " " ++ this.fileName.standardizePath ++ ".pdf").unixCmd;
-	}
+	show { (this.lilyViewPath ++ " " ++ this.fileName.standardizePath ++ ".pdf").unixCmd }
 
 }

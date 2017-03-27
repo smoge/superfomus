@@ -1,24 +1,7 @@
-// SuperFomus -- SuperCollider bindings to FoMus Music Notation
-// Copyright (C) 2011 Bernardo Barros
-// 
-// This program is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-// 
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-// 
-// You should have received a copy of the GNU General Public License
-// along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-
 + Event {
 
 	asFomusString {
-		
+
 		var outString = "";
 
 		this.keys.includes(\instrument).if({
@@ -46,9 +29,9 @@
 		});
 
 		this.keys.includes(\midinote).if({
-			
+
 			if( this[\midinote].class == Array,
-				{ 
+				{
 					this[\midinote].do({arg thisNote;
 						outString = outString ++ " pitch " ++ thisNote.asString + "; \n"
 					})
@@ -58,7 +41,7 @@
 				}
 			)
 		});
-		
+
 		this.keys.includes(\note).if({
 			
 			if( this[\note].class == Array,
@@ -72,7 +55,6 @@
 				}
 			)
 		});
-		
 		^outString
 	}
 }

@@ -1,0 +1,9 @@
+(
+\name: "Fomus",
+\summary: "Fomus music notation bindings to SuperCollider",
+\version: "0.0.1",
+\url: "https://github.com/smoge/SuperFomus",
+\dependencies: [],
+\copyright: "Bernardo Barros. 2011",
+\license: "GPLv3"
+)
