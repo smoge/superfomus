@@ -37,7 +37,7 @@ Fomus {
 
 	}
 
-    put { arg that, n=1; this.add(that, n) }
+    put { arg that, n=1; this.add(that, n)}
 
 	add { arg that, n=1;
 
@@ -94,37 +94,39 @@ Fomus {
 	newTag { timeTag = Date.getDate.stamp.asString }
 
 	write {
-		var file = File(this.fileName.standardizePath ++ timeTag ++ ".fms","w");
-		file.write(this.header ++ "\n");
-		file.write(this.asString);
-		file.close
+        var path, f;
+        path = this.fileName.standardizePath ++ timeTag ++ ".fms";
+		f = File.open(path,"w");
+		f << this.header << "\n";
+		f << this.asString;
+		f.close
 	}
 
 	ly {
-		this.newTag; this.write;
-		(
-			"fomus " ++ this.fileName.standardizePath ++ timeTag ++ ".fms"
-			++ " -o " ++ this.fileName.standardizePath ++ timeTag ++ ".ly"
-		).runInTerminal
+		var f;
+        this.newTag;
+        this.write;
+        f = this.fileName.standardizePath ++ timeTag;
+        format("fomus %.fms -o %.ly", f, f).runInTerminal;
 	}
 
 	midi {
-		this.newTag; this.write;
-		(
-			"fomus " ++ this.fileName.standardizePath ++ timeTag ++ ".fms"
-			++ " -o " ++ this.fileName.standardizePath ++ timeTag ++ ".mid"
-		).systemCmd
+        var f;
+        this.newTag;
+        this.write;
+        f = this.fileName.standardizePath ++ timeTag;
+        format("fomus %.fms -o %.mid", f, f).runInTerminal;
 	}
 
 	xml {
-		this.newTag; this.write;
-		(
-			"fomus " ++ this.fileName.standardizePath ++ ".fms" ++
-			" -o " ++ this.fileName.standardizePath ++ ".xml"
-		).systemCmd
+		var f;
+        this.newTag;
+        this.write;
+        f = this.fileName.standardizePath ++ timeTag;
+        format("fomus %.fms -o %.xml", f, f).runInTerminal;
 	}
 
-	show { (this.lilyViewPath ++ " " ++ this.fileName.standardizePath ++ ".pdf").unixCmd }
-
+	show {
+        format("% %.pdf", this.lilyViewPath, this.fileName.standardizePath).unixCmd
+    }
 }
-

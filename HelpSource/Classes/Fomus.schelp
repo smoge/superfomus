@@ -198,7 +198,7 @@ a = 12.collect({|i|
     ),
     'dur': 1
   )
-})
+});
 
 f = Fomus();
 f.add(a);
