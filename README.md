@@ -1,4 +1,4 @@
-# SuperFomus
+# Fomus
 
 SuperCollider bindings to Fomus Music Notation (FOrmat MUSic).
 
@@ -6,11 +6,11 @@ SuperCollider bindings to Fomus Music Notation (FOrmat MUSic).
 
 See Help file for more information.
 
-## Website
+## Project website:
 
     https://github.com/smoge/superfomus
 
-## Fomus website
+## Fomus website:
 
     http://fomus.sourceforge.net/
 
