@@ -55,7 +55,7 @@ Path to PDF viewer. Default code::"/usr/bin/xpdf"::
 METHOD:: qt
 Boolean to indicate whether or not you want to use quarter-tone.
 
-METHOD:: put
+METHOD:: add
 Can be an Event, an Array of Events or a Stream.
 
 argument:: stuffIn
@@ -106,7 +106,7 @@ Or you can create a Pattern, turn it into a Stream, and specify how
 many events should be created by this Stream:
 
 code::
-put(Stream, number-of-elements)
+add(Stream, number-of-elements)
 ::
 
 First of all, create your Fomus object, with or without initial
@@ -155,10 +155,10 @@ p = Pbind(
 p.play
 ::
 
-Put the next 40 Events in our Fomus object:
+Add the next 40 Events in our Fomus object:
 
 code::
-f.put(p.asStream, 40)
+f.add(p.asStream, 40)
 ::
 
 Make and show a Lilypond Score
@@ -201,7 +201,7 @@ a = 12.collect({|i|
 })
 
 f = Fomus();
-f.put(a);
+f.add(a);
 f.ly;
 );
 ::
