@@ -1,7 +1,7 @@
 (
 \name: "Fomus",
 \summary: "Fomus music notation bindings to SuperCollider",
-\version: "0.0.3",
+\version: "0.1.0",
 \url: "https://github.com/smoge/SuperFomus",
 \dependencies: [],
 \copyright: "Bernardo Barros. 2011",
