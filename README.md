@@ -52,4 +52,4 @@ f.midi;
 f.xml;
 )
 ```
-![Example2](https://cdn.rawgit.com/smoge/superfomus/master/HelpSource/Classes/example2.svg))
+![Example2](https://cdn.rawgit.com/smoge/superfomus/master/HelpSource/Classes/example2.svg)
