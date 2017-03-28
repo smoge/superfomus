@@ -19,28 +19,25 @@ See Help file for more information.
 ```supercollider
 (
 a = 12.collect({|i|
-  (
-    'midinote': (
+  ( 'midinote': (
       (63 + rrand(-6,6.5) + [0,8,13]) ++
-      (60 + rrand(-6,6.5) + [0,5,6,9])
-    ),
-    'dur': 1
-  )
-})
+      (60 + rrand(-6,6.5) + [0,5,6,9]) ),
+    'dur': 1 )
+});
 
 f = Fomus();
 f.add(a);
 f.ly;
-);
+)
 ```
 
-![Example1](https://cdn.rawgit.com/smoge/superfomus/master/HelpSource/Classes/example1.svg)
+![](https://cdn.rawgit.com/smoge/superfomus/master/HelpSource/Classes/example1.svg)
 
 
 ```supercollider
 (
 p = Pbind(
-        \midinote, Prand((60,60.5..80), inf),
+  \midinote, Prand((60,60.5..80), inf),
   \dur, Prand([0.125, 0.25, 0.5], inf)
 );
 
@@ -52,4 +49,4 @@ f.midi;
 f.xml;
 )
 ```
-![Example2](https://cdn.rawgit.com/smoge/superfomus/master/HelpSource/Classes/example2.svg)
+![](https://cdn.rawgit.com/smoge/superfomus/master/HelpSource/Classes/example2.svg)
