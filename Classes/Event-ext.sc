@@ -28,18 +28,20 @@
 			outString = outString ++ " duration " ++ this[\dur].asString
 		});
 
-		this.keys.includes(\midinote).if({
+		this.isRest.not.if({
+			this.keys.includes(\midinote).if({
 
-			if( this[\midinote].class == Array,
-				{
-					this[\midinote].do({arg thisNote;
-						outString = outString ++ " pitch " ++ thisNote.asString + "; \n"
-					})
-				},{
-					outString = outString ++ " pitch " ++ (this[\midinote]).asString;
-					outString = outString ++ ";";
-				}
-			)
+				if( this[\midinote].class == Array,
+					{
+						this[\midinote].do({arg thisNote;
+							outString = outString ++ " pitch " ++ thisNote.asString ++ "; \n"
+						})
+					},{
+						outString = outString ++ " pitch " ++ (this[\midinote]).asString;
+						outString = outString ++ ";";
+					}
+				)
+			})
 		});
 
 		this.keys.includes(\note).if({
