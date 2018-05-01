@@ -44,20 +44,22 @@
 			})
 		});
 
-		this.keys.includes(\note).if({
+		this.isRest.not.if({
+			this.keys.includes(\note).if({
 
-			if( this[\note].class == Array,
-				{ // if this is a chord:
-					this[\note].do({arg thisNote;
-						outString = outString ++ " pitch " ++ (thisNote + 60).asString + "; \n"
-					})
-				},{
-					outString = outString ++ " pitch " ++ (this[\note] + 60).asString;
-					outString = outString ++ ";";
-				}
-			)
+				if( this[\note].class == Array,
+					{ // if this is a chord:
+						this[\note].do({arg thisNote;
+							outString = outString ++ " pitch " ++ (thisNote + 60).asString + "; \n"
+						})
+					},{
+						outString = outString ++ " pitch " ++ (this[\note] + 60).asString;
+						outString = outString ++ ";";
+					}
+				)
+			})
 		});
+
 		^outString
 	}
 }
-
