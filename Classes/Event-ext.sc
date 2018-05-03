@@ -59,6 +59,8 @@
 				)
 			})
 		});
+		
+		this.isRest.if({ outString = outString ++ ";"; });
 
 		^outString
 	}
