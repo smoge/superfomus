@@ -107,7 +107,7 @@ Fomus {
         this.newTag;
         this.write;
         f = this.fileName.standardizePath ++ timeTag;
-        format("fomus %.fms -o %.ly", f, f).runInTerminal;
+        format("fomus %.fms -o %.ly", f, f).unixCmd;
 	}
 
 	midi {
@@ -115,7 +115,7 @@ Fomus {
         this.newTag;
         this.write;
         f = this.fileName.standardizePath ++ timeTag;
-        format("fomus %.fms -o %.mid", f, f).runInTerminal;
+        format("fomus %.fms -o %.mid", f, f).unixCmd;
 	}
 
 	xml {
@@ -123,7 +123,7 @@ Fomus {
         this.newTag;
         this.write;
         f = this.fileName.standardizePath ++ timeTag;
-        format("fomus %.fms -o %.xml", f, f).runInTerminal;
+        format("fomus %.fms -o %.xml", f, f).unixCmd;
 	}
 
 	show {
