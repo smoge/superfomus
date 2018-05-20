@@ -2,7 +2,7 @@
 
 SuperCollider bindings to Fomus Music Notation (FOrmat MUSic).
 
-``FOMUS is a open source software that automates many musical notation tasks for composers and musicians [...] Once the composer loads or inputs their materials, FOMUS outputs a file suitable for importing into a graphical notation program such as LilyPond, MuseScore, Finale, Sibelius and others.''
+“FOMUS is a open source software that automates many musical notation tasks for composers and musicians [...] Once the composer loads or inputs their materials, FOMUS outputs a file suitable for importing into a graphical notation program such as LilyPond, MuseScore, Finale, Sibelius and others.”
 
 See Help file for more information.
 
@@ -13,6 +13,22 @@ See Help file for more information.
 ## Fomus website:
 
     http://fomus.sourceforge.net/
+
+## Installation:
+Prerequesites:
+- [Git](https://git-scm.com/)  
+- [LilyPond](http://lilypond.org) 
+    - [Fedora](http://lilypond.org/doc/v2.19/Documentation/topdocs/INSTALL.html#fedora)          
+    - [Linux Mint](http://lilypond.org/doc/v2.19/Documentation/topdocs/INSTALL.html#linux-mint)  
+    - [OpenSUSE](http://lilypond.org/doc/v2.19/Documentation/topdocs/INSTALL.html#opensuse)  
+    - [Ubuntu](http://lilypond.org/doc/v2.19/Documentation/topdocs/INSTALL.html#ubuntu)  
+    - [MacOS X](http://lilypond.org/macos-x.html)  
+    - [Windows](http://lilypond.org/windows.html)
+    
+Finally, run in the sclang
+``` sc
+Quarks.install("https://github.com/smoge/superfomus");
+```
 
 ## Examples
 
@@ -26,6 +42,7 @@ a = 12.collect({|i|
 });
 
 f = Fomus();
+f.fileName = "~/SCFomus_"; // complete file path
 f.add(a);
 f.ly;
 )
@@ -44,6 +61,7 @@ p = Pbind(
 //p.play;
 
 f = Fomus(p.asStream, 30);
+f.fileName = "~/SCFomus_"; // complete file path
 f.ly;
 f.midi;
 f.xml;
