@@ -14,6 +14,13 @@ See Help file for more information.
 
     http://fomus.sourceforge.net/
 
+## Installation:
+
+``` sc
+// run in the interpreter
+Quarks.install("https://github.com/smoge/superfomus");
+```
+
 ## Examples
 
 ```supercollider
