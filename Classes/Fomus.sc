@@ -107,7 +107,17 @@ Fomus {
 		this.newTag;
 		this.write;
 		f = this.fileName.standardizePath ++ timeTag;
-		format("fomus %.fms -o %.ly", f, f).runInTerminal;
+		Platform.case(
+			\osx, {
+				format("fomus %.fms -o %.ly", f, f).runInTerminal
+			},
+			\linux, {
+				format("fomus %.fms -o %.ly", f, f).unixCmd
+			},
+			\windows, {
+				format("fomus %.fms -o %.ly", f, f).unixCmd
+			}
+		);
 	}
 
 	midi {
@@ -115,7 +125,17 @@ Fomus {
 		this.newTag;
 		this.write;
 		f = this.fileName.standardizePath ++ timeTag;
-		format("fomus %.fms -o %.mid", f, f).runInTerminal;
+		Platform.case(
+			\osx, {
+				format("fomus %.fms -o %.mid", f, f).runInTerminal
+			},
+			\linux, {
+				format("fomus %.fms -o %.mid", f, f).unixCmd
+			},
+			\windows, {
+				format("fomus %.fms -o %.mid", f, f).unixCmd
+			}
+		);
 	}
 
 	xml {
@@ -123,10 +143,30 @@ Fomus {
 		this.newTag;
 		this.write;
 		f = this.fileName.standardizePath ++ timeTag;
-		format("fomus %.fms -o %.xml", f, f).runInTerminal;
+		Platform.case(
+			\osx, {
+				format("fomus %.fms -o %.xml", f, f).runInTerminal
+			},
+			\linux, {
+				format("fomus %.fms -o %.xml", f, f).unixCmd
+			},
+			\windows, {
+				format("fomus %.fms -o %.xml", f, f).unixCmd
+			}
+		);
 	}
 
 	show {
-		format("% %.pdf", this.lilyViewPath, this.fileName.standardizePath).runInTerminal
+		Platform.case(
+			\osx, {
+				format("% %.pdf", this.lilyViewPath, this.fileName.standardizePath).runInTerminal
+			},
+			\linux, {
+				format("% %.pdf", this.lilyViewPath, this.fileName.standardizePath).unixCmd
+			},
+			\windows, {
+				format("% %.pdf", this.lilyViewPath, this.fileName.standardizePath).unixCmd
+			}
+		);
 	}
 }
