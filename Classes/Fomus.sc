@@ -37,7 +37,7 @@ Fomus {
 
 	}
 
-    put { arg that, n=1; this.add(that, n)}
+	put { arg that, n=1; this.add(that, n)}
 
 	add { arg that, n=1;
 
@@ -94,8 +94,8 @@ Fomus {
 	newTag { timeTag = Date.getDate.stamp.asString }
 
 	write {
-        var path, f;
-        path = this.fileName.standardizePath ++ timeTag ++ ".fms";
+		var path, f;
+		path = this.fileName.standardizePath ++ timeTag ++ ".fms";
 		f = File.open(path,"w");
 		f << this.header << "\n";
 		f << this.asString;
@@ -104,29 +104,29 @@ Fomus {
 
 	ly {
 		var f;
-        this.newTag;
-        this.write;
-        f = this.fileName.standardizePath ++ timeTag;
-        format("fomus %.fms -o %.ly", f, f).unixCmd;
+		this.newTag;
+		this.write;
+		f = this.fileName.standardizePath ++ timeTag;
+		format("fomus %.fms -o %.ly", f, f).runInTerminal;
 	}
 
 	midi {
-        var f;
-        this.newTag;
-        this.write;
-        f = this.fileName.standardizePath ++ timeTag;
-        format("fomus %.fms -o %.mid", f, f).unixCmd;
+		var f;
+		this.newTag;
+		this.write;
+		f = this.fileName.standardizePath ++ timeTag;
+		format("fomus %.fms -o %.mid", f, f).runInTerminal;
 	}
 
 	xml {
 		var f;
-        this.newTag;
-        this.write;
-        f = this.fileName.standardizePath ++ timeTag;
-        format("fomus %.fms -o %.xml", f, f).unixCmd;
+		this.newTag;
+		this.write;
+		f = this.fileName.standardizePath ++ timeTag;
+		format("fomus %.fms -o %.xml", f, f).runInTerminal;
 	}
 
 	show {
-        format("% %.pdf", this.lilyViewPath, this.fileName.standardizePath).unixCmd
-    }
+		format("% %.pdf", this.lilyViewPath, this.fileName.standardizePath).runInTerminal
+	}
 }
